@@ -27,11 +27,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatefulWidget {
-  @override
-  _LoginFormState createState() => _LoginFormState();
-}
-
 class CobaLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,8 +46,8 @@ class CobaLogin extends StatelessWidget {
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.bold,
                   color: Colors.red[900],
-                  ),
                 ),
+              ),
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
@@ -110,10 +105,7 @@ class CobaLogin extends StatelessWidget {
                 style: TextStyle(color: Colors.red[900]),
               ),
               SizedBox(height: 10),
-              Text(
-                'Or sign in with',
-                style: TextStyle(color:Colors.grey),
-              ),
+              Text('Or sign in with', style: TextStyle(color: Colors.grey)),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +117,7 @@ class CobaLogin extends StatelessWidget {
                       },
                       label: Text('Google'),
                       icon: Icon(Icons.g_mobiledata),
-                      ),
+                    ),
                   ),
                   SizedBox(width: 5),
                   Expanded(
@@ -135,7 +127,7 @@ class CobaLogin extends StatelessWidget {
                       },
                       label: Text('Github'),
                       icon: Icon(Icons.code),
-                      ),
+                    ),
                   ),
                   SizedBox(width: 5),
                   Expanded(
@@ -145,7 +137,7 @@ class CobaLogin extends StatelessWidget {
                       },
                       label: Text('Apple'),
                       icon: Icon(Icons.apple),
-                      ),
+                    ),
                   ),
                 ],
               ),
@@ -159,101 +151,6 @@ class CobaLogin extends StatelessWidget {
               Text(
                 '© 2025 My Flutter App',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _submit() {
-    if (_formKey.currentState?.validate() ?? false) {
-      final username = _usernameController.text;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Welcome, $username')));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Login',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty)
-                    return 'Please enter username';
-                  if (value.trim().length < 3)
-                    return 'Username must be at least 3 characters';
-                  return null;
-                },
-              ),
-              SizedBox(height: 12),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty)
-                    return 'Please enter password';
-                  if (value.length < 6)
-                    return 'Password must be at least 6 characters';
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submit,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red[900],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
-                  child: Text('Sign In'),
-                ),
               ),
             ],
           ),
