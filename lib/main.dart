@@ -41,6 +41,7 @@ class CobaLogin extends StatelessWidget {
         child: Form(
           child: Column(
             children: [
+              SizedBox(height: 12),
               Text(
                 'Login Form',
                 textAlign: TextAlign.center,
@@ -231,7 +232,6 @@ class Register extends StatelessWidget {
                 labelText: 'First Name',
                 hintText: 'Enter your first name',
                 border: UnderlineInputBorder(
-
                   borderSide: BorderSide(color: Colors.red),
                 ),
               ),
@@ -295,7 +295,8 @@ class Register extends StatelessWidget {
               ),
               mode: DateTimeFieldPickerMode.date,
               autovalidateMode: AutovalidateMode.always,
-              validator: (e) => (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
+              validator: (e) =>
+                  (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
               onChanged: (DateTime? value) {
                 print(value);
               },
@@ -304,7 +305,7 @@ class Register extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Handle register action
-              }, 
+              },
               child: Text(
                 'Register',
                 style: TextStyle(fontSize: 18, color: Colors.white),
@@ -353,8 +354,223 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Forgot Password')),
-      body: Center(child: Text('Forgot Password Page')),
+      appBar: AppBar(
+        title: Text('Forgot Password', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red[900],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Center(
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 500),
+              child: ForgotPassword(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ForgotPassword extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          Image.asset('assets/images/forgot_password.png', height: 150),
+          SizedBox(height: 20),
+
+          Text(
+            'Enter your email address to reset your password.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          SizedBox(height: 40),
+          TextFormField(
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              // labelText: 'Your email',
+              hintText: 'Enter your email',
+              label: Center(child: Text('Your email')),
+            ),
+          ),
+          SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VerifiedForgotPasswordPage(),
+                ),
+              );
+            },
+            child: Text(
+              'Submit',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red[900],
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              minimumSize: Size(double.infinity, 50),
+              elevation: 5,
+            ),
+          ),
+          SizedBox(height: 20),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Back to Login',
+              style: TextStyle(color: Colors.red[900]),
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            '© 2025 My Flutter App',
+            style: TextStyle(fontSize: 12, color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class VerifiedForgotPasswordPage extends StatelessWidget {
+  const VerifiedForgotPasswordPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Verify Email', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red[900],
+      ),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 500),
+                child: VerifiedForgotPassword(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class VerifiedForgotPassword extends StatelessWidget {
+  const VerifiedForgotPassword({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+
+      child: Form(
+        child: Column(
+          children: [
+            Image.asset('assets/images/forgot_password.png', height: 150),
+            SizedBox(height: 20),
+            Text('Please Enter The 4-Digit Code Sent To Your Email',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+            SizedBox(height: 30),
+            Row(
+              
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    decoration: InputDecoration(
+                      
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    decoration: InputDecoration(
+                      
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
+            TextButton(
+              onPressed: () {
+                // Handle resend code action
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Resend Code',
+                style: TextStyle(color: Colors.red[900]),
+              ),
+            ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                // Handle verify action
+              },
+              child: Text(
+                'Verify',
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red[900],
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                minimumSize: Size(double.infinity, 50),
+                elevation: 5,
+              ),
+            ),
+          ],
+        )
+      ),
     );
   }
 }
