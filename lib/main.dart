@@ -82,7 +82,7 @@ class CobaLogin extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Handle login action
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red[900],
@@ -482,23 +482,21 @@ class VerifiedForgotPassword extends StatelessWidget {
           children: [
             Image.asset('assets/images/forgot_password.png', height: 150),
             SizedBox(height: 20),
-            Text('Please Enter The 4-Digit Code Sent To Your Email',
+            Text(
+              'Please Enter The 4-Digit Code Sent To Your Email',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
             SizedBox(height: 30),
             Row(
-              
               children: [
                 Expanded(
                   child: TextFormField(
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                    ),
+
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
                   ),
                 ),
                 SizedBox(width: 10),
@@ -507,10 +505,7 @@ class VerifiedForgotPassword extends StatelessWidget {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
-                      
-                      border: UnderlineInputBorder(),
-                    ),
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
                   ),
                 ),
                 SizedBox(width: 10),
@@ -519,10 +514,7 @@ class VerifiedForgotPassword extends StatelessWidget {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
-                      
-                      border: UnderlineInputBorder(),
-                    ),
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
                   ),
                 ),
                 SizedBox(width: 10),
@@ -531,9 +523,7 @@ class VerifiedForgotPassword extends StatelessWidget {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                    ),
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
                   ),
                 ),
               ],
@@ -552,7 +542,10 @@ class VerifiedForgotPassword extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Handle verify action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewPasswordPage()),
+                );
               },
               child: Text(
                 'Verify',
@@ -569,8 +562,134 @@ class VerifiedForgotPassword extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ),
     );
   }
 }
+
+class NewPasswordPage extends StatelessWidget {
+  const NewPasswordPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Create New Password',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red[900],
+      ),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 500),
+                child: NewPassword(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NewPassword extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Form(
+      child: Column(
+        children: [
+          Text(
+            'Create New Password',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 26,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 20),
+          Image.asset('assets/images/forgot_password.png', height: 150),
+          SizedBox(height: 20),
+          Text(
+            'Your new password must be different from previous used passwords.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          SizedBox(height: 30),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'New Password',
+              hintText: 'Enter your new password',
+            ),
+          ),
+          SizedBox(height: 15),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Confirm Password',
+              hintText: 'Re-enter your new password',
+            ),
+          ),
+          SizedBox(height: 30),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Change Password',
+              style: TextStyle(fontSize: 18, color: Colors.red[900]),
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            child: Text(
+              'Save',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red[900],
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              minimumSize: Size(double.infinity, 50),
+              elevation: 5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dashboard', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red[900],
+      ),
+      body: Center(
+        child: Text(
+          'Welcome to the Dashboard!',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      )
+    );
+  }
+}
+
+class Dashboard extends Sta
