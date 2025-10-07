@@ -691,5 +691,3 @@ class DashboardPage extends StatelessWidget {
     );
   }
 }
-
-class Dashboard extends Sta
