@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 main() => runApp(MyApp());
 
@@ -289,7 +290,8 @@ class _Register extends State<Register> {
                     borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
-                validator: (value) => value!.isEmpty ? 'Please enter your first name' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your first name' : null,
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -302,7 +304,8 @@ class _Register extends State<Register> {
                     borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
-                validator: (value) => value!.isEmpty ? 'Please enter your last name' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your last name' : null,
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -333,7 +336,8 @@ class _Register extends State<Register> {
                     borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
-                validator: (value) => value!.isEmpty ? 'Please enter your phone number' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your phone number' : null,
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -372,12 +376,10 @@ class _Register extends State<Register> {
                 onPressed: () {
                   // Handle register action
                   if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of( 
-                      context,
-                    ).showSnackBar(
-                        SnackBar(content: Text('Registration successful'))
-                  );
-                  Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Registration successful')),
+                    );
+                    Navigator.pop(context);
                   }
                 },
                 child: Text(
@@ -746,21 +748,214 @@ class NewPassword extends StatelessWidget {
   }
 }
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int _page = 0;
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  final List<Widget> _pages = [
+    Center(
+      child: Text(
+        'Home',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    ),
+    Center(
+      child: Text(
+        'Search',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    ),
+    Center(child: ProfilePage()),
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.red[900],
       ),
-      body: Center(
-        child: Text(
-          'Welcome to the Dashboard!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: _pages[_page],
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: _page,
+        height: 60.0,
+        items: <Widget>[
+          Icon(Icons.home, size: 30, color: Colors.white),
+          Icon(Icons.search, size: 30, color: Colors.white),
+          Icon(Icons.person, size: 30, color: Colors.white),
+        ],
+        color: Colors.red[900]!,
+        buttonBackgroundColor: Colors.red[700]!,
+        backgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 300),
+        onTap: (int tappedIndex) {
+          setState(() {
+            _page = tappedIndex;
+          });
+        },
+        letIndexChange: (index) => true,
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      
+      padding: EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 75,
+                  backgroundImage: AssetImage('assets/images/login.jpg'),
+                ),
+                SizedBox(width: 30),
+                Column(
+                  children: [
+                    Text(
+                      'John Doe Brown',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '@johndoe',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Edit Profile',
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[900],
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.red[50],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.email, color: Colors.red[900]),
+                    title: Text('Email'),
+                    subtitle: Text('johndoe@example.com'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.phone, color: Colors.red[900]),
+                    title: Text('Phone'),
+                    subtitle: Text('+1 234 567 890'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.location_on, color: Colors.red[900]),
+                    title: Text('Location'),
+                    subtitle: Text('New York, USA'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.calendar_today, color: Colors.red[900]),
+                    title: Text('Member Since'),
+                    subtitle: Text('January 2023'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.lock, color: Colors.red[900]),
+                    title: Text('Password'),
+                    subtitle: Text('********'),
+                    trailing: TextButton(
+                      onPressed: () {
+                        // Navigate to change password page
+                      },
+                      child: Text(
+                        'Change',
+                        style: TextStyle(color: Colors.red[900]),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.settings, color: Colors.red[900]),
+                    title: Text('Settings'),
+                    onTap: () {
+                      // Navigate to settings page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsPage(),
+                        ),
+                      );
+                    },
+                    trailing: Icon(Icons.arrow_drop_down),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.logout, color: Colors.red[900]),
+                    title: Text('Logout'),
+                    onTap: () {
+                      // Handle logout action
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red[900],
+      ),
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: Center(
+          child: Text(
+            'INI HALAMAN SETTINGAN',
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
