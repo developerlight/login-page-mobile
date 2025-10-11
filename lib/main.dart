@@ -113,9 +113,28 @@ class _CobaLogin extends State<CobaLogin> {
                   // will display error messages under each field automatically.
                   if (_formKey.currentState!.validate()) {
                     // If the form is valid, show a success snackbar (or proceed).
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(SnackBar(content: Text('Login successful')));
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text(
+                          'Login successful',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        duration: Duration(seconds: 2),
+                        width: 280.0, // Width of the SnackBar.
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                        ), // Inner padding for SnackBar content.
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    );
                     // Navigate to the dashboard or perform sign-in logic here.
                     Navigator.push(
                       context,
@@ -748,6 +767,353 @@ class NewPassword extends StatelessWidget {
   }
 }
 
+class Dash extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                Text(
+                  'John Doe Brown',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                TextButton.icon(
+                  onPressed: () {},
+                  label: Icon(
+                    Icons.search_outlined,
+                    color: Colors.black87,
+                    size: 30,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  label: Icon(
+                    Icons.notifications_none_outlined,
+                    color: Colors.black87,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 500),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 20),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.red[50],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Total Balance',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          '\$12,345.67',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Add Money',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[900],
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.red[50],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Icon(Icons.arrow_upward, color: Colors.green, size: 30),
+                        SizedBox(height: 8),
+                        Text(
+                          'Income',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          '\$5,678.90',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(Icons.arrow_downward, color: Colors.red, size: 30),
+                        SizedBox(height: 8),
+                        Text(
+                          'Expenses',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          '\$3,210.45',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.account_balance_wallet,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Savings',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          '\$1,234.56',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      'Recent Transactions',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 440,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.red[100],
+                            child: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.red[900],
+                            ),
+                          ),
+                          title: Text('Grocery Shopping'),
+                          subtitle: Text('Aug 20, 2024'),
+                          trailing: Text(
+                            '-\$150.75',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green[100],
+                            child: Icon(
+                              Icons.attach_money,
+                              color: Colors.green,
+                            ),
+                          ),
+                          title: Text('Salary'),
+                          subtitle: Text('Aug 15, 2024'),
+                          trailing: Text(
+                            '+\$3,000.00',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue[100],
+                            child: Icon(
+                              Icons.account_balance_wallet,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          title: Text('Savings Deposit'),
+                          subtitle: Text('Aug 10, 2024'),
+                          trailing: Text(
+                            '+\$500.00',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.red[100],
+                            child: Icon(
+                              Icons.restaurant,
+                              color: Colors.red[900],
+                            ),
+                          ),
+                          title: Text('Restaurant'),
+                          subtitle: Text('Aug 8, 2024'),
+                          trailing: Text(
+                            '-\$75.20',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green[100],
+                            child: Icon(
+                              Icons.attach_money,
+                              color: Colors.green,
+                            ),
+                          ),
+                          title: Text('Freelance Project'),
+                          subtitle: Text('Aug 5, 2024'),
+                          trailing: Text(
+                            '+\$800.00',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.red[100],
+                            child: Icon(
+                              Icons.local_gas_station,
+                              color: Colors.red[900],
+                            ),
+                          ),
+                          title: Text('Gas Station'),
+                          subtitle: Text('Aug 3, 2024'),
+                          trailing: Text(
+                            '-\$40.00',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue[100],
+                            child: Icon(
+                              Icons.account_balance_wallet,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          title: Text('Savings Withdrawal'),
+                          subtitle: Text('Aug 1, 2024'),
+                          trailing: Text(
+                            '-\$200.00',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -760,12 +1126,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _pages = [
-    Center(
-      child: Text(
-        'Home',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    ),
+    Dash(),
     Center(
       child: Text(
         'Search',
@@ -778,10 +1139,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dashboard', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.red[900],
-      ),
       body: _pages[_page],
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
@@ -813,7 +1170,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      
       padding: EdgeInsets.all(16),
       child: SingleChildScrollView(
         child: Column(
@@ -826,6 +1182,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'John Doe Brown',
@@ -852,7 +1209,7 @@ class ProfilePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red[900],
                         padding: EdgeInsets.symmetric(
-                          horizontal: 20,
+                          horizontal: 10,
                           vertical: 10,
                         ),
                         shape: RoundedRectangleBorder(
