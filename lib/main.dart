@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'utils/route.dart';
+import 'firebase/firebase_service.dart';
 
-
-main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseService.init();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -10,7 +14,6 @@ class MyApp extends StatelessWidget {
   final AppRouter _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       initialRoute: '/login',
       onGenerateRoute: _appRouter.generateRoute,

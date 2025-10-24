@@ -8,62 +8,47 @@ import 'package:app/presentation/screens/setting_page.dart';
 import 'package:app/presentation/screens/verifiedForgotPassword_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/presentation/screens/search_page.dart';
+import 'package:app/presentation/screens/add_student_page.dart';
 
 class AppRouter {
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      
       case '/login':
-        return MaterialPageRoute(
-          builder: (_) => const Login()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const Login());
+
       case '/dashboard':
-        return MaterialPageRoute(
-          builder: (_) => const DashboardPage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const DashboardPage());
+
       case '/forgotPassword':
-        return MaterialPageRoute(
-          builder: (_) => const ForgotPasswordPage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordPage());
+
       case '/newPassword':
-        return MaterialPageRoute(
-          builder: (_) => const NewPasswordPage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const NewPasswordPage());
+
       case '/profile':
-        return MaterialPageRoute(
-          builder: (_) => const ProfilePage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
+
       case '/register':
-        return MaterialPageRoute(
-          builder: (_) => const RegisterPage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const RegisterPage());
+
       case '/settings':
-        return MaterialPageRoute(
-          builder: (_) => const SettingsPage()
-        );
-      
+        return MaterialPageRoute(builder: (_) => const SettingsPage());
+
       case '/verifiedForgotPassword':
         return MaterialPageRoute(
-          builder: (_) => const VerifiedForgotPasswordPage()
+          builder: (_) => const VerifiedForgotPasswordPage(),
         );
 
       case '/search':
-        return MaterialPageRoute(
-          builder: (_) => const SearchPage()
-        );
-      
-      default :
+        return MaterialPageRoute(builder: (_) => const SearchPage());
+
+      case '/addStudent':
+        return MaterialPageRoute(builder: (_) => const AddStudentPage());
+
+      default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
+            body: Center(child: Text('No route defined for ${settings.name}')),
           ),
         );
     }
