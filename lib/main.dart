@@ -5,6 +5,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -266,6 +268,8 @@ class RegisterPage extends StatelessWidget {
 }
 
 class Register extends StatefulWidget {
+  const Register({super.key});
+
   @override
   State<Register> createState() => _Register();
 }
@@ -401,10 +405,6 @@ class _Register extends State<Register> {
                     Navigator.pop(context);
                   }
                 },
-                child: Text(
-                  'Register',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -412,6 +412,10 @@ class _Register extends State<Register> {
                   minimumSize: Size(double.infinity, 50),
                   backgroundColor: Colors.red[900],
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
+                child: Text(
+                  'Register',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
               SizedBox(height: 10),
@@ -470,6 +474,8 @@ class ForgotPasswordPage extends StatelessWidget {
 }
 
 class ForgotPassword extends StatelessWidget {
+  const ForgotPassword({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -503,10 +509,6 @@ class ForgotPassword extends StatelessWidget {
                 ),
               );
             },
-            child: Text(
-              'Submit',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red[900],
               padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -515,6 +517,10 @@ class ForgotPassword extends StatelessWidget {
               ),
               minimumSize: Size(double.infinity, 50),
               elevation: 5,
+            ),
+            child: Text(
+              'Submit',
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
           SizedBox(height: 20),
@@ -643,10 +649,6 @@ class VerifiedForgotPassword extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => NewPasswordPage()),
                 );
               },
-              child: Text(
-                'Verify',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red[900],
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -655,6 +657,10 @@ class VerifiedForgotPassword extends StatelessWidget {
                 ),
                 minimumSize: Size(double.infinity, 50),
                 elevation: 5,
+              ),
+              child: Text(
+                'Verify',
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
           ],
@@ -695,6 +701,8 @@ class NewPasswordPage extends StatelessWidget {
 }
 
 class NewPassword extends StatelessWidget {
+  const NewPassword({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -747,10 +755,6 @@ class NewPassword extends StatelessWidget {
             onPressed: () {
               Navigator.popUntil(context, (route) => route.isFirst);
             },
-            child: Text(
-              'Save',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red[900],
               padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -760,6 +764,10 @@ class NewPassword extends StatelessWidget {
               minimumSize: Size(double.infinity, 50),
               elevation: 5,
             ),
+            child: Text(
+              'Save',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -768,6 +776,8 @@ class NewPassword extends StatelessWidget {
 }
 
 class Dash extends StatelessWidget {
+  const Dash({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -853,10 +863,6 @@ class Dash extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text(
-                        'Add Money',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red[900],
                         padding: EdgeInsets.symmetric(
@@ -866,6 +872,10 @@ class Dash extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                      ),
+                      child: Text(
+                        'Add Money',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                   ],
@@ -1166,6 +1176,8 @@ class _DashboardPageState extends State<DashboardPage> {
 }
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -1202,10 +1214,6 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(height: 8),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text(
-                        'Edit Profile',
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red[900],
                         padding: EdgeInsets.symmetric(
@@ -1215,6 +1223,10 @@ class ProfilePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                      ),
+                      child: Text(
+                        'Edit Profile',
+                        style: TextStyle(fontSize: 15, color: Colors.white),
                       ),
                     ),
                   ],
